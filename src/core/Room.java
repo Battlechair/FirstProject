@@ -10,11 +10,11 @@ public class Room {
     public Room(){
         dungeon=new Room[0][0];
         sprite = new String[11];
-        sprite[0]="______________________";
+        sprite[0]="_________________________ ";
         for (int i = 1; i < 10; i++) {
-            sprite[i]="|                    |";
+            sprite[i]="|                       | ";
         }
-        sprite[10]="----------------------";
+        sprite[10]="------------------------- ";
         player = false;
     }
 
@@ -58,16 +58,20 @@ public class Room {
         this.player = player;
     }
 
+    public void setRoom(int x, int y,Room room){
+        getDungeon()[getDungeon().length - (y)][x-1]=room;
+    }
+
     public void printLabyrinth() throws DungeonException {
-        if(dungeon.length == 0){
-            if(dungeon[0].length == 0){
+        if(getDungeon().length == 0){
+            if(getDungeon()[0].length == 0){
                 throw new DungeonException("No Dungeon Found");
             }
         }else{
-            for (int i = 0; i < dungeon.length; i++) {
+            for (int i = 0; i < getDungeon().length; i++) {
                 for (int j = 0; j < 11; j++) {
-                    for (int k = 0; k < dungeon[i].length; k++) {
-                        System.out.print((dungeon[i][k].getSprite())[j]);
+                    for (int k = 0; k < getDungeon()[i].length; k++) {
+                        System.out.print((getDungeon()[i][k].getSprite())[j]);
                     }
                     System.out.print("\n");
                 }
